@@ -1,0 +1,27 @@
+
+<html>
+  <head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="mocha.js"></script>
+    <script src="chai.js"></script>
+    <script src="WebConsole.js"></script>
+    <script src="http://localhost:35729/livereload.js"></script>
+    <script type="text/javascript">
+      mocha.setup({
+        ui:'bdd',
+        bail: true,
+        reporter:WebConsole
+      })
+    </script>
+    <script src="../../lib/bimap.js"></script>
+    <script src="../tests.js"></script>
+    <script>
+      onload = function(){
+        var runner = mocha.run();
+      };
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

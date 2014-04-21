@@ -1,0 +1,37 @@
+{
+  "name": "bimap",
+  "version": "0.0.0",
+  "description": "Bi-directional map with fast data access by both the keys and the values",
+  "main": "lib/bimap.js",
+  "config": {
+    "blanket": {
+      "pattern": "lib",
+      "data-cover-never": "node_modules"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alethes/bimap"
+  },
+  "keywords": [
+    "bidirectional",
+    "map",
+    "hash",
+    "bidimap",
+    "associative array"
+  ],
+  "author": "James Daab (Alethes)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alethes/bimap/issues"
+  },
+  "homepage": "https://github.com/alethes/bimap",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-coffee": "0.10.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-coffee-jshint": "^0.2.0",
+    "coffee-script": "^1.7.1",
+    "grunt-mocha-cov": "^0.2.1"
+  }
+}
