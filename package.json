@@ -1,7 +1,7 @@
 {
   "name": "bimap",
-  "version": "0.0.0",
-  "description": "Bi-directional map with fast data access by both the keys and the values",
+  "version": "0.0.1",
+  "description": "A powerful, flexible and efficient Bi-directional map implementation",
   "main": "lib/bimap.js",
   "config": {
     "blanket": {
