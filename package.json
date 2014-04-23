@@ -1,6 +1,6 @@
 {
   "name": "bimap",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A powerful, flexible and efficient bidirectional map implementation",
   "main": "lib/bimap.js",
   "config": {
@@ -14,11 +14,14 @@
     "url": "https://github.com/alethes/bimap"
   },
   "keywords": [
-    "bidirectional",
+    "bidirectional map",
     "map",
+    "object",
+    "key by value",
     "hash",
     "bidimap",
-    "associative array"
+    "associative array",
+    "two-sided object"
   ],
   "author": "James Daab (Alethes)",
   "license": "MIT",
