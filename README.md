@@ -6,6 +6,7 @@ A powerful, flexible and efficient JavaScript bidirectional map implementation. 
 Installation
 -------------
 Node: `npm install bimap`
+
 Browser: link to bimap.js
 
 
