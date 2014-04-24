@@ -27,7 +27,7 @@ class BiMap
     return "null"  if t is "[object Null]"
   _assign: (k, v, type = "push", reverse = false) ->
     @kindex++  if k > @kindex
-    console.log k, v, type, reverse, @kindex
+    #console.log k, v, type, reverse, @kindex
     dir = if reverse then "vk" else "kv"
     if type is "push"
       unless @[dir][k]?
@@ -60,7 +60,7 @@ class BiMap
       @[dir][k] = v
       return true
   insert: (k, v, type = "push") ->
-    console.log "insert", k, v, type
+    #console.log "insert", k, v, type
     return @error "At least one argument required by insert()"  unless k?
     ktype = @type k
     unless v?
@@ -79,7 +79,7 @@ class BiMap
     vtype = @type v
     if vtype is "object"
       return @traverse v, ((v, path) ->
-        console.log "trcb", k, path, v
+        #console.log "trcb", k, path, v
         @insert "#{k}.#{path}", v, type
       ).bind @
     else if vtype is "array"
@@ -100,10 +100,10 @@ class BiMap
     true
   traverse: (obj, cb) ->
     path = arguments[2] or ""
-    console.log obj
+    #console.log obj
     if "object" is @type obj
       for k, v of obj
-        console.log "tr", k, v, path
+        #console.log "tr", k, v, path
         npath = path
         npath += "."  if path.length > 0
         npath += k
