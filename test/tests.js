@@ -52,7 +52,7 @@ describe("#push()", function() {
   it("should handle mapping an array of keys to a value", function() {
     var bimap, item, _i, _len, _results;
     bimap = new BiMap;
-    bimap.push(array, "a");
+    bimap.push(array, "a").should.equal(true);
     bimap.val("a").should.deep.equal(array);
     _results = [];
     for (_i = 0, _len = array.length; _i < _len; _i++) {
@@ -64,7 +64,7 @@ describe("#push()", function() {
   it("should handle mapping an array of values to a key", function() {
     var bimap, item, _i, _len, _results;
     bimap = new BiMap;
-    bimap.push("a", array);
+    bimap.push("a", array).should.equal(true);
     bimap.key("a").should.deep.equal(array);
     _results = [];
     for (_i = 0, _len = array.length; _i < _len; _i++) {
@@ -92,11 +92,17 @@ describe("#push()", function() {
     var bimap;
     bimap = new BiMap;
     bimap.push("a", {
-      b: 1
-    }).should.deep.equal([true]);
-    console.log(bimap);
+      b: 1,
+      c: {
+        d: {
+          e: 2
+        }
+      }
+    });
     bimap.key("a.b").should.equal(1);
-    return bimap.val(1).should.equal("a.b");
+    bimap.val(1).should.equal("a.b");
+    bimap.key("a.c.d.e").should.equal(2);
+    return bimap.val(2).should.equal("a.c.d.e");
   });
   it("shouldn\"t allow key redefinition", function() {
     var bimap;
@@ -168,6 +174,37 @@ describe("#push()", function() {
     bimap.push("f").should.equal(true);
     bimap.key(2).should.equal("f");
     return bimap.val("f").should.equal(2);
+  });
+});
+
+describe("#setNull", function() {
+  it("should handle mapping a key to undefined", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.setNull(0, void 0).should.be["true"];
+    expect(bimap.key(0)).to.be.an("undefined");
+    return bimap.val(void 0).should.equal(0);
+  });
+  it("should handle mapping undefined to a value", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.setNull(void 0, 0).should.be["true"];
+    expect(bimap.val(0)).to.be.an("undefined");
+    return bimap.key(void 0).should.equal(0);
+  });
+  it("should handle mapping a key to null", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.setNull(0, null).should.be["true"];
+    expect(bimap.key(0)).to.be.an("null");
+    return bimap.val(null).should.equal(0);
+  });
+  return it("should handle mapping null to a value", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.setNull(null, 0).should.be["true"];
+    expect(bimap.val(0)).to.be.a("null");
+    return bimap.key(null).should.equal(0);
   });
 });
 

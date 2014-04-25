@@ -36,6 +36,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-coffee-jshint"
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-mocha-cov"
-  grunt.loadNpmTasks "grunt-clear"
 
   grunt.registerTask "default", ["watch"] 

@@ -1,6 +1,6 @@
 {
   "name": "bimap",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A powerful, flexible and efficient bidirectional map implementation",
   "main": "lib/bimap.js",
   "config": {

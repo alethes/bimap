@@ -2,6 +2,7 @@ class BiMap
   klength: 0
   vlength: 0
   kindex: 0
+  throwOnError: false
   constructor: (A) ->
     @kv = {}
     @vk = {}
@@ -110,9 +111,14 @@ class BiMap
         @traverse v, cb, npath
     else
       cb obj, path
-  error: ->
+  setNull: (k, v) ->
+    @kv[k] = v
+    @vk[v] = k
+    true
+  error: (e) ->
+    throw new Error e  if @throwOnError
     false
-  remove: (k) ->
+  removeKey: (k) ->
     delete @vk[@kv[k]]
     delete @kv[k]
   removeVal: (v) ->

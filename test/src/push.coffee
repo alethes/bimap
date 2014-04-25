@@ -3,13 +3,13 @@ describe "#push()", ->
   array2 = [4, 5, 6]
   it "should handle mapping an array of keys to a value", ->
     bimap = new BiMap
-    bimap.push array, "a"
+    bimap.push(array, "a").should.equal true
     bimap.val("a").should.deep.equal array
     for item in array
       bimap.key(item).should.equal "a"
   it "should handle mapping an array of values to a key", ->
     bimap = new BiMap
-    bimap.push "a", array
+    bimap.push("a", array).should.equal true
     bimap.key("a").should.deep.equal array
     for item in array
       bimap.val(item).should.equal "a"
@@ -24,10 +24,14 @@ describe "#push()", ->
     bimap = new BiMap
     bimap.push("a",
       b: 1
-    ).should.deep.equal [true]
-    console.log bimap
+      c:
+        d:
+          e: 2
+    )#.should.deep.equal [true, true]
     bimap.key("a.b").should.equal 1
     bimap.val(1).should.equal "a.b"
+    bimap.key("a.c.d.e").should.equal 2
+    bimap.val(2).should.equal "a.c.d.e"
   it "shouldn\"t allow key redefinition", ->
     bimap = new BiMap
     bimap.push "a", 1
