@@ -32,7 +32,7 @@ class BiMap
     dir = if reverse then "vk" else "kv"
     rdir = if dir is "vk" then "kv" else "vk"
     if type is "push"
-      unless @[dir][k]? or @[rdir][undefined] is k or @[rdir][null] is k
+      unless (@[dir][k]? or @[rdir][undefined] is k or @[rdir][null] is k)
         #console.log dir, k, v
         @[dir][k] = v
         #console.log @kv
@@ -91,8 +91,9 @@ class BiMap
     else if ktype is "array"
       return @insertArray v, k, type, true
     else
-      @_assign v, k, type, true
-      return @_assign k, v, type
+      if @_assign k, v, type
+        return @_assign v, k, type, true
+      false
   insertArray: (k, array, type = "push", reverse = false) ->
     if @type(k) isnt "array"
       @_assign k, array, type, reverse

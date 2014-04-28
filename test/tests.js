@@ -156,7 +156,7 @@ describe("#push()", function() {
     bimap.key(2).should.equal("c");
     return bimap.val("c").should.equal(2);
   });
-  return it("should provide an interface for insertion of an object", function() {
+  it("should provide an interface for insertion of an object", function() {
     var bimap;
     bimap = new BiMap;
     bimap.push({
@@ -181,6 +181,30 @@ describe("#push()", function() {
     bimap.push("f").should.equal(true);
     bimap.key(2).should.equal("f");
     return bimap.val("f").should.equal(2);
+  });
+  it("should not overwrite mapping to undefined", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.setNull(0, void 0).should.be["true"];
+    bimap.push(0, "a").should.be["false"];
+    bimap.vk.should.deep.equal({
+      undefined: 0
+    });
+    return bimap.kv.should.deep.equal({
+      0: void 0
+    });
+  });
+  return it("should not overwrite mapping to null", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.setNull(0, null).should.be["true"];
+    bimap.push(0, "a").should.be["false"];
+    bimap.vk.should.deep.equal({
+      "null": 0
+    });
+    return bimap.kv.should.deep.equal({
+      0: null
+    });
   });
 });
 

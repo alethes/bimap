@@ -95,3 +95,15 @@ describe "#push()", ->
     bimap.push("f").should.equal true
     bimap.key(2).should.equal "f"
     bimap.val("f").should.equal 2
+  it "should not overwrite mapping to undefined", ->
+    bimap = new BiMap
+    bimap.setNull(0, undefined).should.be.true
+    bimap.push(0, "a").should.be.false
+    bimap.vk.should.deep.equal {undefined: 0}
+    bimap.kv.should.deep.equal {0: undefined}
+  it "should not overwrite mapping to null", ->
+    bimap = new BiMap
+    bimap.setNull(0, null).should.be.true
+    bimap.push(0, "a").should.be.false
+    bimap.vk.should.deep.equal {null: 0}
+    bimap.kv.should.deep.equal {0: null}
