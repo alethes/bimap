@@ -117,6 +117,7 @@ class BiMap
   setNull: (k, v) ->
     @kv[k] = v
     @vk[v] = k
+    @kindex++
     true
   error: (e) ->
     throw new Error e  if @throwOnError

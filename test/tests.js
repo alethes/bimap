@@ -190,9 +190,10 @@ describe("#push()", function() {
     bimap.vk.should.deep.equal({
       undefined: 0
     });
-    return bimap.kv.should.deep.equal({
+    bimap.kv.should.deep.equal({
       0: void 0
     });
+    return bimap.kindex.should.equal(1);
   });
   return it("should not overwrite mapping to null", function() {
     var bimap;
@@ -202,9 +203,10 @@ describe("#push()", function() {
     bimap.vk.should.deep.equal({
       "null": 0
     });
-    return bimap.kv.should.deep.equal({
+    bimap.kv.should.deep.equal({
       0: null
     });
+    return bimap.kindex.should.equal(1);
   });
 });
 
