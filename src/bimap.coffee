@@ -30,8 +30,9 @@ class BiMap
     @kindex++  if k > @kindex
     #console.log k, v, type, reverse, @kindex
     dir = if reverse then "vk" else "kv"
+    rdir = if dir is "vk" then "kv" else "vk"
     if type is "push"
-      unless @[dir][k]?
+      unless @[dir][k]? or @[rdir][undefined] is k or @[rdir][null] is k
         #console.log dir, k, v
         @[dir][k] = v
         #console.log @kv
