@@ -52,7 +52,7 @@ describe("#push()", function() {
   it("should handle mapping an array of keys to a value", function() {
     var bimap, item, _i, _len, _results;
     bimap = new BiMap;
-    bimap.push(array, "a").should.equal(true);
+    bimap.push(array, "a").should.be["true"];
     bimap.val("a").should.deep.equal(array);
     _results = [];
     for (_i = 0, _len = array.length; _i < _len; _i++) {
@@ -113,12 +113,19 @@ describe("#push()", function() {
     bimap.key("a").should.equal(1);
     return bimap.val(2).should.equal("b");
   });
+  it("should throw on key redefinition is ::throwOnError is true", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.throwOnError = true;
+    bimap.push("a", 1).should.be["true"];
+    return should.Throw(bimap.push.bind(bimap, "a", 2), Error);
+  });
   it("shouldn\"t allow value redefinition", function() {
     var bimap;
     bimap = new BiMap;
     bimap.push("a", 1);
     bimap.push("b", 2);
-    bimap.push("b", 1).should.equal(false);
+    bimap.push("b", 1).should.be["false"];
     bimap.key("b").should.equal(2);
     return bimap.val(1).should.equal("a");
   });
@@ -174,6 +181,72 @@ describe("#push()", function() {
     bimap.push("f").should.equal(true);
     bimap.key(2).should.equal("f");
     return bimap.val("f").should.equal(2);
+  });
+});
+
+describe("#removeKey()", function() {
+  it("should remove a key-value mapping and its value-key counterpart", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.push("a", "b");
+    bimap.removeKey("a").should.be["true"];
+    should.not.exist(bimap.key("a"));
+    return should.not.exist(bimap.val("b"));
+  });
+  return it("should remove all values mapped to the removed key", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.push("a", ["b", "c", "d"]);
+    bimap.removeKey("a").should.be["true"];
+    should.not.exist(bimap.key("a"));
+    should.not.exist(bimap.val("b"));
+    should.not.exist(bimap.val("c"));
+    should.not.exist(bimap.val("d"));
+    it("should remove mappings constructed with key-object", function() {});
+    bimap = new BiMap;
+    bimap.push("a", {
+      b: 1,
+      c: 2
+    });
+    bimap.removeKey("a.b").should.be["true"];
+    should.not.exist(bimap.key("a.b"));
+    return should.not.exist(bimap.val(1));
+  });
+});
+
+describe("#removeVal()", function() {
+  it("should remove a value-key mapping and its key-value counterpart", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.push("a", "b");
+    bimap.removeVal("b").should.be["true"];
+    should.not.exist(bimap.val("a"));
+    return should.not.exist(bimap.key("b"));
+  });
+  return it("should remove all keys mapped to the removed value", function() {
+    var bimap;
+    bimap = new BiMap;
+    bimap.push(["b", "c", "d"], "a");
+    bimap.removeVal("a").should.be["true"];
+    should.not.exist(bimap.val("a"));
+    should.not.exist(bimap.key("b"));
+    should.not.exist(bimap.key("c"));
+    should.not.exist(bimap.key("d"));
+    it("should remove mappings constructed with key-object", function() {});
+    bimap = new BiMap;
+    bimap.push("a", {
+      b: 1,
+      c: 2
+    });
+    bimap.removeVal(1).should.be["true"];
+    should.not.exist(bimap.key("a.b"));
+    should.not.exist(bimap.val(1));
+    it("should remove mappings constructed with array-array", function() {});
+    bimap = new BiMap;
+    bimap.push([1, 2, 3], [4, 5, 6]);
+    bimap.removeVal(4).should.be["true"];
+    should.not.exist(bimap.key("a.b"));
+    return should.not.exist(bimap.val(1));
   });
 });
 

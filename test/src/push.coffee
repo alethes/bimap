@@ -3,7 +3,7 @@ describe "#push()", ->
   array2 = [4, 5, 6]
   it "should handle mapping an array of keys to a value", ->
     bimap = new BiMap
-    bimap.push(array, "a").should.equal true
+    bimap.push(array, "a").should.be.true
     bimap.val("a").should.deep.equal array
     for item in array
       bimap.key(item).should.equal "a"
@@ -39,11 +39,16 @@ describe "#push()", ->
     bimap.push("a", 2).should.equal false
     bimap.key("a").should.equal 1
     bimap.val(2).should.equal "b"
+  it "should throw on key redefinition is ::throwOnError is true", ->
+    bimap = new BiMap
+    bimap.throwOnError = true
+    bimap.push("a", 1).should.be.true
+    should.Throw(bimap.push.bind(bimap, "a", 2), Error)
   it "shouldn\"t allow value redefinition", ->
     bimap = new BiMap
     bimap.push "a", 1
     bimap.push "b", 2
-    bimap.push("b", 1).should.equal false
+    bimap.push("b", 1).should.be.false
     bimap.key("b").should.equal 2
     bimap.val(1).should.equal "a"
   it "should provide Array.push()-like interface for singular value insertion", ->

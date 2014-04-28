@@ -28,7 +28,7 @@ module.exports = (grunt) ->
         files: "Gruntfile.coffee"
       scripts:
         files: ["src/**/*.coffee", "test/**/*"]
-        tasks: ["coffee", "coffee_jshint", "mochacov:test"]
+        tasks: ["coffee", "coffee_jshint", "mochacov:test", "mochacov:coverage"]
         options:
           livereload: true
   

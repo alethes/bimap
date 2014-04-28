@@ -93,7 +93,8 @@ class BiMap
       @_assign v, k, type, true
       return @_assign k, v, type
   insertArray: (k, array, type = "push", reverse = false) ->
-    @_assign k, array, type, reverse
+    if @type(k) isnt "array"
+      @_assign k, array, type, reverse
     r = for i in array
       @_assign i, k, type, !reverse
     for i in r
@@ -119,10 +120,28 @@ class BiMap
     throw new Error e  if @throwOnError
     false
   removeKey: (k) ->
-    delete @vk[@kv[k]]
+    if @type(@kv[k]) is "array"
+      for i in @kv[k]
+        if @type(@vk[i]) is "array"
+          index = @vk[i].indexOf k
+          if index != -1
+            @vk[i].splice index
+        else
+          delete @vk[i]  if @vk[i] is k
+    else
+      delete @vk[@kv[k]]
     delete @kv[k]
   removeVal: (v) ->
-    delete @kv[@vk[v]]
+    if @type(@vk[v]) is "array"
+      for i in @vk[v]
+        if @type(@kv[i]) is "array"
+          index = @kv[i].indexOf v
+          if index != -1
+            @kv[i].splice index
+        else
+          delete @kv[i]  if @kv[i] is v
+    else
+      delete @kv[@vk[v]]
     delete @vk[v]
   key: (k) ->
     @kv[k]
