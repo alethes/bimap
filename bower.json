@@ -1,0 +1,29 @@
+{
+  "name": "bimap",
+  "version": "0.0.15",
+  "homepage": "https://github.com/alethes/bimap",
+  "authors": [
+    "alethes <alethesdev@icloud.com>"
+  ],
+  "description": "A powerful, flexible and efficient JavaScript bidirectional map implementation.",
+  "main": "lib/bimap.js",
+  "keywords": [
+    "bimap",
+    "bidirectional",
+    "map",
+    "two-sided",
+    "object",
+    "bidimap",
+    "value",
+    "by",
+    "key"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
