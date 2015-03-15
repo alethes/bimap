@@ -27,8 +27,15 @@ module.exports = (grunt) ->
       grunt:
         files: "Gruntfile.coffee"
       scripts:
-        files: ["src/**/*.coffee", "test/**/*"]
-        tasks: ["coffee", "coffee_jshint", "mochacov:test", "mochacov:coverage"]
+        files: [
+          "src/**/*.coffee",
+          "test/**/*"
+        ]
+        tasks: [
+          "coffee", 
+          "coffee_jshint", 
+          "mochacov:test", "mochacov:coverage"
+        ]
         options:
           livereload: true
   
@@ -37,4 +44,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-mocha-cov"
 
-  grunt.registerTask "default", ["watch"] 
+  grunt.registerTask "default", ["watch"]
