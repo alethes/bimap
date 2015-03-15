@@ -44,3 +44,8 @@ bimap.push({
 bimap.key("a.b"); // => 1
 bimap.val(2); // => "a.c.d"
 ```
+
+
+Live help
+---------
+Do you need some assistance with JavaScript development? [I'm happy to help.](https://hackhands.com/alethes)
