@@ -8,15 +8,14 @@
   "description": "A powerful, flexible and efficient JavaScript bidirectional map implementation.",
   "main": "lib/bimap.js",
   "keywords": [
-    "bimap",
-    "bidirectional",
+    "bidirectional map",
     "map",
-    "two-sided",
     "object",
+    "key by value",
+    "hash",
     "bidimap",
-    "value",
-    "by",
-    "key"
+    "associative array",
+    "two-sided object"
   ],
   "license": "MIT",
   "ignore": [
